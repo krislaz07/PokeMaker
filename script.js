@@ -718,10 +718,8 @@ function borrarProyecto() {
     const confirmacion = confirm("¿Estás seguro de que querés borrar TODO tu progreso? Esta acción no se puede deshacer.");
     
     if (confirmacion) {
-        // Limpiamos el localStorage del navegador
         localStorage.clear();
         
-        // Recargamos la página para que todo vuelva a su estado inicial
         location.reload();
     }
 }
