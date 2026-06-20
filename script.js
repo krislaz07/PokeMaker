@@ -151,7 +151,7 @@ async function cargarPokemon() {
         if (!response.ok) throw new Error("El servidor rechazó la conexión.");
         const data = await response.json();
         todosLosPokemonData = data.results; todosLosPokemon = data.results.map(p => p.name); window.pokemonFiltradosActual = todosLosPokemonData;
-        actualizarSelectsPersonajes(); ordenarArrayMaestro(todosLosPokemonData, capturables, 'poke');
+        actualizarSelectsPersonajes(); ordenarArrayMaestro(todosLosPokemonData, capturables, 'poke'); renderPersonajes();
         grid.innerHTML = ""; pokemonMostrados = 0; mostrarMasPokemon(); await verificarTiposGuardados();
     } catch (error) { grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: #d9534f; padding: 30px;"><button class="action-btn" onclick="cargarPokemon()">🔄 Reintentar Conexión</button></div>`; }
 }
@@ -605,6 +605,14 @@ function actualizarDatalistZonas() {
 }
 
 // --- Personajes ---
+function getPokemonSpriteUrl(nombre) {
+    const poke = todosLosPokemonData.find(p => p.name === nombre);
+    if (poke) {
+        const id = poke.url.split('/')[6];
+        return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+    }
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${nombre}.png`;
+}
 function actualizarSelectsPersonajes() {
     const cl = document.getElementById("char_class"); const fc = document.getElementById("char_faction"); const zn = document.getElementById("char_zone"); if(!cl) return;
     cl.innerHTML = '<option value="">- Ninguna -</option>' + configuracion.clases.map(c => `<option value="${c}">${c}</option>`).join('');
@@ -658,7 +666,7 @@ function verPersonaje(id) {
     let inf = []; if(p.clase) inf.push(p.clase); if(p.faccion) inf.push(p.faccion); if(p.zona) inf.push(`📍 ${p.zona}`);
     document.getElementById("view_char_info").textContent = inf.join(" | "); const n = document.getElementById("view_char_notes"); if(p.notas) { n.style.display = "block"; n.textContent = `"${p.notas}"`; } else n.style.display = "none";
     const team = document.getElementById("view_char_team"); team.innerHTML = "";
-    if(p.equipo.length > 0) { p.equipo.forEach(pk => { team.innerHTML += `<div style="text-align: center;"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pk}.png" style="width: 50px; height: 50px; background: var(--bg-principal); border-radius: 50%;"><br><span style="font-size: 10px;">${pk}</span></div>`; }); }
+    if(p.equipo.length > 0) { p.equipo.forEach(pk => { team.innerHTML += `<div style="text-align: center;"><img src="${getPokemonSpriteUrl(pk)}" style="width: 50px; height: 50px; background: var(--bg-principal); border-radius: 50%;" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/poke-ball.png';"><br><span style="font-size: 10px;">${pk}</span></div>`; }); }
     else team.innerHTML = "<span style='color: var(--texto-mutado); font-size: 12px;'>Sin asignados</span>";
     document.getElementById("personaje_view_modal").style.display = "flex";
 }
@@ -668,7 +676,7 @@ function renderPersonajes() {
     if (personajes.length === 0) { c.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: var(--texto-mutado);">Vacío.</p>'; return; }
     personajes.forEach(p => {
         const div = document.createElement("div"); div.className = "personaje-grid-card"; div.onclick = () => verPersonaje(p.id); const style = p.avatar ? `background-image: url(${p.avatar});` : '';
-        div.innerHTML = `<div><div class="avatar" style="${style} display: flex; justify-content: center; align-items: center; font-size: 24px; color: #ccc;">${p.avatar ? '' : '👤'}</div><div style="font-weight: bold; font-size: 14px;">${p.nombre}</div><div style="font-size: 11px; color: var(--texto-secundario);">${p.clase || 'Sin clase'}</div><div style="display: flex; justify-content: center; gap: 3px; flex-wrap: wrap; margin-top: 5px;">${p.equipo.map(pk => `<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pk}.png" style="width: 20px; height: 20px;">`).join('')}</div></div><div style="display: flex; justify-content: center; gap: 5px; margin-top: 10px;"><button style="background: #f39c12; color: white; border: none; border-radius: 4px; padding: 2px 8px; font-size: 10px;" onclick="editarPersonajeWrapper(event, ${p.id})">Editar</button><button style="background: #d9534f; color: white; border: none; border-radius: 4px; padding: 2px 8px; font-size: 10px;" onclick="eliminarPersonaje(event, ${p.id})">Borrar</button></div>`;
+        div.innerHTML = `<div><div class="avatar" style="${style} display: flex; justify-content: center; align-items: center; font-size: 24px; color: #ccc;">${p.avatar ? '' : '👤'}</div><div style="font-weight: bold; font-size: 14px;">${p.nombre}</div><div style="font-size: 11px; color: var(--texto-secundario);">${p.clase || 'Sin clase'}</div><div style="display: flex; justify-content: center; gap: 3px; flex-wrap: wrap; margin-top: 5px;">${p.equipo.map(pk => `<img src="${getPokemonSpriteUrl(pk)}" style="width: 20px; height: 20px;" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/poke-ball.png';">`).join('')}</div></div><div style="display: flex; justify-content: center; gap: 5px; margin-top: 10px;"><button style="background: #f39c12; color: white; border: none; border-radius: 4px; padding: 2px 8px; font-size: 10px;" onclick="editarPersonajeWrapper(event, ${p.id})">Editar</button><button style="background: #d9534f; color: white; border: none; border-radius: 4px; padding: 2px 8px; font-size: 10px;" onclick="eliminarPersonaje(event, ${p.id})">Borrar</button></div>`;
         c.appendChild(div);
     });
 }
