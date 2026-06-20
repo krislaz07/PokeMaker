@@ -705,3 +705,15 @@ function eliminarEscena(event, id) {
         if (escenaActualId === id) { escenaActualId = null; document.getElementById("editor_vacio").style.display = "flex"; document.getElementById("editor_escena").style.display = "none"; } renderEscenas();
     }
 }
+
+function borrarProyecto() {
+    const confirmacion = confirm("¿Estás seguro de que querés borrar TODO tu progreso? Esta acción no se puede deshacer.");
+    
+    if (confirmacion) {
+        // Limpiamos el localStorage del navegador
+        localStorage.clear();
+        
+        // Recargamos la página para que todo vuelva a su estado inicial
+        location.reload();
+    }
+}

@@ -199,6 +199,7 @@
                     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                         <button class="action-btn" onclick="exportarDatos()" style="background-color: #f39c12; width: auto; padding: 10px 20px;">⬇️ Descargar Backup Completo</button>
                         <button class="action-btn" onclick="document.getElementById('file_input_global').click()" style="background-color: #3498db; width: auto; padding: 10px 20px;">⬆️ Cargar Backup Completo</button>
+                        <button class="btn-danger" onclick="borrarProyecto()">🗑️ Borrar todo y empezar proyecto nuevo</button>
                         <input type="file" id="file_input_global" style="display: none;" accept=".json" onchange="importarDatos(event)">
                     </div>
                 </div>
