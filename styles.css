@@ -220,18 +220,18 @@ body.dark-mode .toolbar-btn:hover { background: #1c3d6b; border-color: #58a6ff; 
 /* Botón de borrar proyecto */
 .btn-danger {
     background-color: #ff4d4d;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
     border: none;
-    padding: 10px 20px; /* Ajustá estos números según tus otros botones */
+    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    /* Agregá esto para que tengan la misma altura */
     height: 45px; 
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px; /* Espacio entre el icono y el texto */
+    gap: 8px;
 }
 
 .btn-danger:hover {
