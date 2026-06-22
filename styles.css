@@ -204,10 +204,17 @@ body.dark-mode .toolbar-btn:hover { background: #1c3d6b; border-color: #58a6ff; 
 .type-steel { background-color: #B8B8D0; color: #333; }
 .type-fairy { background-color: #EE99AC; color: #333; }
 
-/* --- Adaptación para Celulares (Diseño Responsivo) --- */
+/* ---Adaptación para Celulares--- */
 @media screen and (max-width: 768px) {
-    .sidebar { position: fixed; height: 100%; box-shadow: 5px 0 15px rgba(0,0,0,0.3); }
-    .content-wrapper { padding: 15px; }
+    .sidebar { 
+        position: fixed; 
+        height: 100%; 
+        box-shadow: 5px 0 15px rgba(0,0,0,0.3);
+        left: -100%; width: 250px;
+        z-index: 1000; 
+        transition: left 0.3s ease;
+        .content-wrapper { padding: 15px; }
+    .sidebar.abierto {left: 0;}
     .top-bar { padding: 10px 15px; }
     .top-bar span { display: none; }
     #tab_historia > div[style*="calc(100vh - 200px)"] { flex-direction: column; height: auto !important; }
@@ -231,9 +238,6 @@ body.dark-mode .toolbar-btn:hover { background: #1c3d6b; border-color: #58a6ff; 
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 8px;}
 }
-
-.btn-danger:hover {
-    background-color: #630f0f;
-}
+.btn-danger:hover {background-color: #630f0f;}
