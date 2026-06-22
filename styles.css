@@ -222,8 +222,8 @@ body.dark-mode .toolbar-btn:hover { background: #1c3d6b; border-color: #58a6ff; 
     .form-group[style*="flex"] { flex-direction: column; align-items: stretch !important; }
     .form-group[style*="flex"] > div, .form-group[style*="flex"] > select, .form-group[style*="flex"] > input, .form-group[style*="flex"] > button { max-width: 100% !important; width: 100% !important; margin-bottom: 5px; }
     .modal-content { width: 90%; padding: 15px; }
+    }
 }
-
 /* Botón de borrar proyecto */
 .btn-danger {
     background-color: #ff4d4d;
@@ -238,6 +238,7 @@ body.dark-mode .toolbar-btn:hover { background: #1c3d6b; border-color: #58a6ff; 
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;}
-}
+    gap: 8px;
+    }
+
 .btn-danger:hover {background-color: #630f0f;}
