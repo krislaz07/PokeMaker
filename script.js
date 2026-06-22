@@ -19,7 +19,7 @@ let todosLosPokemonData = [];
 let todosLosObjetosData = [];
 let pokemonMostrados = 0;
 let objetosMostrados = 0;
-const ITEMS_POR_PAGINA = 50;
+const ITEMS_POR_PAGINA = 151;
 
 window.pokemonFiltradosActual = []; 
 window.cacheFiltroTipo = null; 
