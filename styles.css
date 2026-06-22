@@ -208,13 +208,16 @@ body.dark-mode .toolbar-btn:hover { background: #1c3d6b; border-color: #58a6ff; 
 @media screen and (max-width: 768px) {
     .sidebar { 
         position: fixed; 
+        top: 0; 
+        left: 0; 
         height: 100%; 
         width: 250px;
-        background-color: var(--sidebar);
+        background-color: var(--bg-sidebar); 
         box-shadow: 5px 0 15px rgba(0,0,0,0.3);
         transform: translateX(-100%); 
         transition: transform 0.3s ease; 
         z-index: 1000; 
+        margin-left: 0 !important; 
     }
     .sidebar.abierto {transform: translateX(0);}
     .top-bar { padding: 10px 15px; }
