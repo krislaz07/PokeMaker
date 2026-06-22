@@ -209,12 +209,14 @@ body.dark-mode .toolbar-btn:hover { background: #1c3d6b; border-color: #58a6ff; 
     .sidebar { 
         position: fixed; 
         height: 100%; 
+        width: 250px;
+        background-color: #1e1e1e; 
         box-shadow: 5px 0 15px rgba(0,0,0,0.3);
-        left: -100%; width: 250px;
+        transform: translateX(-100%); 
+        transition: transform 0.3s ease; 
         z-index: 1000; 
-        transition: left 0.3s ease;
-        .content-wrapper { padding: 15px; }
-    .sidebar.abierto {left: 0;}
+    }
+    .sidebar.abierto {transform: translateX(0);}
     .top-bar { padding: 10px 15px; }
     .top-bar span { display: none; }
     #tab_historia > div[style*="calc(100vh - 200px)"] { flex-direction: column; height: auto !important; }
@@ -222,8 +224,8 @@ body.dark-mode .toolbar-btn:hover { background: #1c3d6b; border-color: #58a6ff; 
     .form-group[style*="flex"] { flex-direction: column; align-items: stretch !important; }
     .form-group[style*="flex"] > div, .form-group[style*="flex"] > select, .form-group[style*="flex"] > input, .form-group[style*="flex"] > button { max-width: 100% !important; width: 100% !important; margin-bottom: 5px; }
     .modal-content { width: 90%; padding: 15px; }
-    }
 }
+
 /* Botón de borrar proyecto */
 .btn-danger {
     background-color: #ff4d4d;

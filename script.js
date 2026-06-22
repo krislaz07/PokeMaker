@@ -56,8 +56,25 @@ function toggleDarkMode() {
 
 function toggleMenu() {
     const sidebar = document.getElementById("sidebar");
-    sidebar.classList.toggle("collapsed");
+    
+    // Si la pantalla es tamaño celular (768px o menos)
+    if (window.innerWidth <= 768) {
+        sidebar.classList.toggle("abierto"); 
+    } else {
+        // Si es pantalla de PC, mantiene tu lógica original
+        sidebar.classList.toggle("collapsed"); 
+    }
 }
+
+// Cierr el menú en celulares al elegir una opción
+const elementosMenu = document.querySelectorAll('#sidebar button, #sidebar a');
+elementosMenu.forEach(elemento => {
+    elemento.addEventListener('click', function() {
+        if (window.innerWidth <= 768) {
+            document.getElementById('sidebar').classList.remove('abierto');
+        }
+    });
+});
 
 function cambiarPestana(tabId, btn) {
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
