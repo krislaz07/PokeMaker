@@ -208,8 +208,8 @@
                     <h3 style="margin-top: 0; color: var(--texto-principal); font-size: 16px;">💾 Gestión del Proyecto (Backup Master)</h3>
                     <p style="font-size: 13px; color: var(--texto-secundario); margin-bottom: 15px;">Descargá o cargá <b>absolutamente toda</b> la información de tu fangame en un único archivo seguro.</p>
                     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        <button class="action-btn" onclick="exportarDatos()" style="background-color: #f39c12; width: auto; padding: 10px 20px;">⬇️ Descargar Backup Completo</button>
-                        <button class="action-btn" onclick="document.getElementById('file_input_global').click()" style="background-color: #3498db; width: auto; padding: 10px 20px;">⬆️ Cargar Backup Completo</button>
+                        <button class="action-btn" onclick="exportarDatos(); gtag('event', 'descargar_backup');" style="background-color: #f39c12; width: auto; padding: 10px 20px;">⬇️ Descargar Backup Completo</button>
+                        <button class="action-btn" onclick="document.getElementById('file_input_global').click(); gtag('event', 'cargar_backup');" style="background-color: #3498db; width: auto; padding: 10px 20px;">⬆️ Cargar Backup Completo</button>
                         <button class="btn-danger" onclick="borrarProyecto()">🗑️ Borrar todo y empezar proyecto nuevo</button>
                         <input type="file" id="file_input_global" style="display: none;" accept=".json" onchange="importarDatos(event)">
                     </div>
